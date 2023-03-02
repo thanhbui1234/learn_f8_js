@@ -16,17 +16,14 @@ const Validator = (options) => {
     options.rules.forEach(function (rule) {
       var inputElement = fomrElement.querySelector(rule.selector);
       var isValid = validate(inputElement, rule);
-      if (!isValid) {
+      if (isValid) {
         isFormValid = false;
       }
     });
 
     if (isFormValid) {
-      console.log(typeof isFormValid);
       console.log("Khong co loi");
     } else {
-      console.log(isFormValid);
-
       console.log("co loi");
     }
   });
@@ -55,7 +52,7 @@ const Validator = (options) => {
       errorElement.innerText = "";
       inputElement.parentElement.classList.remove("invalid");
     }
-    return !errorMsg;
+    return errorMsg;
   };
   ////
   var selectorRules = {};
