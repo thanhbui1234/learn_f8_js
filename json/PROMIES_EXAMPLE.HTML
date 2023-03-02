@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      var users = [
+        {
+          id: 1,
+          name: "kien",
+        },
+        {
+          id: 2,
+          name: "thanh",
+        },
+        {
+          id: 3,
+          name: "son",
+        },
+        {
+          id: 4,
+          name: "thao",
+        },
+      ];
+      var comments = [
+        {
+          id: 1,
+          users_id: 1,
+          content: "m ngu vl",
+        },
+        {
+          id: 2,
+          users_id: 2,
+
+          content: "t biet ",
+        },
+        {
+          id: 3,
+          users_id: 3,
+
+          content: "t khong biet nua ",
+        },
+        {
+          id: 4,
+          users_id: 2,
+
+          content: "thao cute ",
+        },
+        {
+          id: 5,
+          users_id: 2,
+
+          content: "t biet ",
+        },
+      ];
+      // lấy cmt
+      // từ cmt lấy ra user id
+      // từ user id lấy  ra user tương ứng
+      // fake api
+
+      const getComments = () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(comments);
+          }, 1000);
+        });
+      };
+
+      const getUserByIds = (userIds) => {
+        return new Promise((resolve) => {
+          var result = users.filter((user) => {
+            return userIds.includes(user.id);
+          });
+
+          resolve(result);
+        });
+      };
+
+      getComments()
+        .then((comments) => {
+          var userIds = comments.map((commnet) => {
+            return commnet.users_id;
+          });
+
+          return getUserByIds(userIds).then(function (users) {
+            return {
+              users: users,
+              comments: comments,
+            };
+          });
+        })
+        
+        .then((data) => {
+          let commnetBlock = document.querySelector("#comments_block");
+          var html = "";
+          data.comments.forEach((cmt) => {
+            var user = data.users.find((user) => {
+              return user.id === cmt.users_id;
+            });
+            html += `<li> ${user.name} : ${cmt.content} </li>  <br> `;
+          });
+
+          commnetBlock.innerHTML = html;
+        });
+    </script>
+    <ul id="comments_block"></ul>
+  </body>
+</html>

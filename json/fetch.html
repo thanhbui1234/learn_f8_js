@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="postApi"></ul>
+    <script>
+      var postApi = "https://jsonplaceholder.typicode.com/posts";
+      fetch(postApi)
+        .then((reposne) => {
+          return reposne.json();
+          // json . parse : json -> javascript types ;
+        })
+        .then((posts) => {
+          var htmls = posts.map((post) => {
+            return ` </li>
+                <h2> ${post.title} </h2>
+                <p> ${post.body} </p>
+        
+            </li>`;
+          });
+          var html = htmls.join("");
+          console.log(html);
+          document.querySelector("#postApi").innerHTML = html;
+        })
+        .catch((err) => {
+          console.log("sai cmnr");
+        });
+    </script>
+  </body>
+</html>

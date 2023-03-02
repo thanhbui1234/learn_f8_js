@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Click me</button>
+
+    <script>
+        //     addEventListener su nhieu nhieu viec khi 1 event xay ra 
+        //   lang nghe / huy bo su kien
+        var button = document.querySelector('button')
+        // co 2 doi so 
+        function viec1() {
+            console.log('viec 1');
+        }
+        function viec2() {
+            console.log('viec 2');
+        }
+        button.addEventListener('click',viec1);
+        button.addEventListener('click',viec2);
+
+        setTimeout(function(){
+            button.removeEventListener('click',viec1)
+        },3000);
+    </script>
+</body>
+
+</html>

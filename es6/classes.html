@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function course(name, pirece) {
+            this.name = name;
+            this.pirece = pirece;
+            this.getname = function () {
+                return this.name;
+            };
+        }
+
+        const phpCourses = new course('php', 10000)
+        const javascript = new course('javascript', 10000)
+        console.log(phpCourses)
+        console.log(javascript)
+    </script>
+
+    <script>
+        // es6
+        class course2 {
+            constructor(name, pirece) {
+                this.name = name;
+                this.pirece = pirece;
+            }
+            getname() {
+                return this.name;
+            }
+            getPrice() {
+                return this.pirece;
+            }
+            run(){
+                const  isSuccess = false;
+                if (isSuccess) {
+                    isSuccess = true
+                }else{
+
+                }
+            }
+        }
+        var phpCourses2 = new course2('php', 10000)
+        var javascript2 = new course2('javascript', 10000)
+        console.log(phpCourses)
+        console.log(javascript)
+    </script>
+
+
+
+    </script>
+</body>
+
+</html>

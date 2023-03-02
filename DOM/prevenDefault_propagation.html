@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        display: none;
+      }
+
+      /* dấu ngã để lấy ra đc element */
+      input:focus ~ ul {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://fullstack.edu.vn/"> Hoc lap trinh </a>
+    <br />
+    <a id="" href="https://www.facebook.com/"> facebook </a>
+    <script>
+      var a = document.querySelectorAll("a");
+
+      for (let i = 0; i < a.length; i++) {
+        a[i].onclick = function (e) {
+          if (!e.target.href.startsWith("https://fullstack.edu.vn/"))
+            e.preventDefault(); // sẽ bỏ thuộc tính của thẻ a :D
+        };
+      }
+    </script>
+    <br />
+
+    <input placeholder="ngu" type="text" name="" id="" />
+    <ul>
+      <li>OCCHO</li>
+      <li>YEU</li>
+      <li>HEHE</li>
+    </ul>
+    <script>
+      var ulElement = (document.querySelector("ul").onmousedown = function (e) {
+        e.preventDefault();
+      });
+
+      var ulElement2 = (document.querySelector("ul").onclick = function (e) {
+        console.log(e.target);
+      });
+    </script>
+
+    <!-- Nổi bọt -->
+    <br /><br />
+    <div onclick="console.log('div')">
+      div
+      <button>Click me</button>
+
+      <script>
+        var noiBot = (document.querySelector("button").onclick = function (e) {
+          e.stopPropagation();
+          console.log("click-me");
+        });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  cach binh thuong -->
+    <script>
+        var arr= ['document','javascript','arr']
+        var a = arr[0];
+        var b = arr[1]; 
+        var c = arr [2];
+        console.log (a, b, c);
+    </script>
+    <script>
+        var arrry =  ['document','javascript','arr']
+        var [a,b,c] = arrry;
+        // neu chi muon lay a va c
+        var [a,,c] = arrry;
+
+        console.log ( a,b,c);  
+
+
+            // neu muon lay tat ca  ngoai tru a
+            var [a, ...rest]= arrry;
+            console.log (rest);
+
+    </script>
+    <script>
+        var course = {
+            name :'html ',
+            price :1000,
+            children :{
+                name: 'react'
+            }
+        }
+
+
+        var {name,price, children, children:{name:arrry }} = course;
+        console.log (name,price)
+    </script>
+
+    <script>
+        function logger(...args) {
+            console.log(args.length)
+        }
+
+        logger(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+        </script>
+</body>
+</html> 

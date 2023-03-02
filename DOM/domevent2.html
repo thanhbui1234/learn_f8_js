@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="text" type="text" name="" id="" />
+    <input type="checkbox" name="" id="" />
+    <select>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <script>
+      var inputElement = document.querySelector("#text");
+      // on change sẽ lấy được giá trị khi bỏ focus ra khỏi input
+      // inputElement.onchange = function(e){
+      //     console.log(e.target.value)
+      // }
+      var luu; //  iff you want to save value
+      //on input sẽ lấy được value nếu m muốn gõ đến đâu lấy được đến đó
+      inputElement.oninput = function (e) {
+        luu = e.target.value;
+        alert(luu);
+      };
+
+      var inputElement2 = document.querySelector('input[type="checkbox"]');
+      inputElement2.oninput = function (e) {
+        if (e.target.checked == true) {
+          alert("ok");
+        }
+        return false;
+      };
+      var select = document.querySelector("select");
+      select.onchange = function (e) {
+        console.log(e.target.value);
+      };
+    </script>
+  </body>
+</html>
