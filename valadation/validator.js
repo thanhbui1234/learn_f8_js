@@ -2,9 +2,16 @@
 // 2 Khi ok no return message  , undefined
 
 const Validator = (options) => {
-  console.log(options);
-
   var selectorRules = {};
+
+  const getParent = (element, selector) => {
+    while (element.parentElement) {
+      if (element.parentElement.matches(selector)) {
+        return element.parentElement;
+      }
+      element = element.parentElement;
+    }
+  };
 
   var fomrElement = document.querySelector(options.form);
   // khi thực thi submit
@@ -22,14 +29,19 @@ const Validator = (options) => {
     });
 
     if (isFormValid) {
-      console.log("Khong co loi");
-    } else {
-      console.log("co loi");
+      var enableInputs = fomrElement.querySelectorAll("[name]:not([disabled])");
+      var formValues = Array.from(enableInputs).reduce((values, input) => {
+        values[input.name] = input.value;
+        return values;
+      }, {});
+      if (typeof options.onSubmit === "function") {
+        options.onSubmit(formValues);
+      }
     }
   });
   // /////////////////////
   const validate = (inputElement, rule) => {
-    var errorElement = inputElement.parentElement.querySelector(
+    var errorElement = getParent(inputElement, options.formGroup).querySelector(
       options.errorSelector
     );
 
@@ -47,10 +59,10 @@ const Validator = (options) => {
     }
     if (errorMsg) {
       errorElement.innerText = errorMsg;
-      inputElement.parentElement.classList.add("invalid");
+      getParent(inputElement, options.formGroup).classList.add("invalid");
     } else {
       errorElement.innerText = "";
-      inputElement.parentElement.classList.remove("invalid");
+      getParent(inputElement, options.formGroup).classList.remove("invalid");
     }
     return errorMsg;
   };
@@ -131,6 +143,7 @@ Validator.isComfirm = (input_password_confirmation, getComfirmValue, msg) => {
 // hàm này sẽ thực thi tất cả validate trên form
 Validator({
   form: "#form-1",
+  formGroup: ".form-group",
   errorSelector: ".form-message",
   rules: [
     Validator.isRequired("#input_fullname"),
